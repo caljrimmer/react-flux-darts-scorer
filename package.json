@@ -1,6 +1,6 @@
 {
   "name": "react-flux-darts-scorer",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "author": "Callum Rimmer <callumt@deadtrendy.co.uk>",
   "description": "A Darts scoring and performance tracking application made with React/Flux and Backbone.",
   "dependencies": {
