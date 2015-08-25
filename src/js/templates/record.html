@@ -1,0 +1,19 @@
+<ul class="left">
+	<li><%= NumberOfGamesTx %> <span id="jb_number_of_games" <%if(games>0){%>class="special_record"<%}%>><%= games %></span></li>
+	<li><%= HighestDartsTx %> <span id="jb_highest_3d" <%if(highest3d>0){%>class="special_record"<%}%>><%= highest3d %></span></li>
+	<li><%= HighestCheckoutTx %> <span id="jb_highest_checkout" <%if(bestCheckout>0){%>class="special_record"<%}%>><%= bestCheckout %></span></li>
+	<li>
+		180's <span id="jb_oneeighty" <%if(oneEighty>0){%>class="special_record"<%}%>><%= oneEighty %></span>
+		140's <span id="jb_oneforty" <%if(oneForty>0){%>class="special_record"<%}%>><%= oneForty %></span>
+	</li>
+	<li>
+		120's <span id="jb_onetwenty" <%if(oneTwenty>0){%>class="special_record"<%}%>><%= oneTwenty %></span>
+		100's <span id="jb_onehundred" <%if(oneHundred>0){%>class="special_record"<%}%>><%= oneHundred %></span>
+	</li> 
+</ul>
+<h2><%= ave %></h2>
+<p><%= AverageDartsTx %></p>
+<ul class="right">
+	<li><%= LeastThrowsTx %> <span id="jb_least_throws" <%if(leastDarts>0){%>class="special_record"<%}%>><%= leastDarts %></span></li>
+	<li><%= BestAverageTx %> <span id="jb_best_average" <%if(bestAve>0){%>class="special_record"<%}%>><%= bestAve %></span></li>    
+</ul>

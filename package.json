@@ -1,0 +1,32 @@
+{
+  "name": "dart-scorer-react",
+  "version": "0.0.2",
+  "author": "Callum Rimmer <callumt@deadtrendy.co.uk>",
+  "description": "A Darts scoring and performance tracking application",
+  "dependencies": {
+	"jquery": "*",
+	"underscore" : "*",
+	"backbone": "*",
+    "react": "*",
+    "react-dom": "*",
+    "flux": "*",
+    "es6-shim": "*",
+    "d3": "*",
+    "timeago": "*"
+  },
+  "devDependencies": {
+	"browserify": "*",
+	"gulp": "*",
+    "gulp-util": "*",
+    "babelify" : "*",
+    "browser-sync" : "*",
+    "vinyl-source-stream" : "*"
+  },
+  "scripts": {
+    "start": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caljrimmer/Darts-Scorer-React.git"
+  }
+}
