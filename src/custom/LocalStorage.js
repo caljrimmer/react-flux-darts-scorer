@@ -47,19 +47,6 @@ var actions = {
 
     },
 
-    storeGames: function() {
-        var newArray = gamesStore.toJSON();
-        var delimiter = this.delimiter;
-        var str = "";
-        _.each(newArray, function(game,i){
-            if(i !== 0){
-                str += delimiter
-            }
-            str += JSON.stringify(game);
-        });
-        localStorage.games = str;
-    },
-
     getCurrentGame: function() {
         if(!(localStorage && localStorage.currentGame)){
             localStorage.currentGame = "";

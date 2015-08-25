@@ -1,8 +1,8 @@
 {
-  "name": "dart-scorer-react",
+  "name": "react-flux-darts-scorer",
   "version": "0.0.2",
   "author": "Callum Rimmer <callumt@deadtrendy.co.uk>",
-  "description": "A Darts scoring and performance tracking application",
+  "description": "A Darts scoring and performance tracking application made with React/Flux and Backbone.",
   "dependencies": {
 	"jquery": "*",
 	"underscore" : "*",
@@ -10,23 +10,31 @@
     "react": "*",
     "react-dom": "*",
     "flux": "*",
-    "es6-shim": "*",
     "d3": "*",
     "timeago": "*"
   },
   "devDependencies": {
-	"browserify": "*",
-	"gulp": "*",
-    "gulp-util": "*",
-    "babelify" : "*",
-    "browser-sync" : "*",
-    "vinyl-source-stream" : "*"
+    "babelify": "*",
+    "browser-sync": "*",
+    "browserify": "*",
+    "gulp": "*",
+    "react-tools": "^0.13.3",
+    "babel-jest": "*",
+    "jest-cli" : "0.4.0",
+    "vinyl-source-stream": "*"
   },
   "scripts": {
-    "start": "npm install"
+    "start": "npm install && gulp",
+    "test": "jest"
+  },
+  "jest": {
+    "scriptPreprocessor": "./node_modules/babel-jest",
+    "testFileExtensions": ["es6", "js"],
+    "moduleFileExtensions": ["js", "json", "es6"],
+    "unmockedModulePathPatterns":["react"]
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/caljrimmer/Darts-Scorer-React.git"
+    "url": "https://github.com/caljrimmer/react-flux-darts-scorer.git"
   }
 }

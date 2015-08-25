@@ -41,15 +41,8 @@ var CurrentGame = Backbone.Model.extend({
     },
 
     sync: function(method, model, options) {
-
-        if(method !== "read"){
-            //LocalStorageActions.setCurrentGame(model);
-        }else{
-            //LocalStorageActions.getCurrentGame();
-        }
-
+        //API interaction in Actions
         return;
-
     },
 
     newGame : function(){
@@ -228,15 +221,8 @@ var Games = Backbone.Collection.extend({
     },
 
     sync: function(method, collection, options) {
-
-        if(method === "read"){
-            //LocalStorageActions.getGames(collection);
-        }else{
-            //LocalStorageActions.storeGames(collection);
-        }
-
+        //API interaction in Actions
         return;
-
     },
 
     dispatchCallback: function(payload) {
