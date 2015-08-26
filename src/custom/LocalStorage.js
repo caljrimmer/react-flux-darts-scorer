@@ -1,5 +1,6 @@
 import _ from 'underscore';
 import gamesStore from '../store/GamesStore';
+import AppActions from '../actions/AppActions';
 
 var actions = {
 
@@ -47,15 +48,12 @@ var actions = {
 
     },
 
-    getCurrentGame: function() {
-        if(!(localStorage && localStorage.currentGame)){
-            localStorage.currentGame = "";
+    saveGame : function(value){
+        gamesStore.add(value)
+        if(gamesStore.length){
+            this.parseToLocalStorage();
         }
-        return localStorage.currentGame;
-    },
-
-    setCurrentGame: function(game) {
-        localStorage.currentGame = JSON.stringify(game);
+        AppActions.newGame();
     }
 
 };

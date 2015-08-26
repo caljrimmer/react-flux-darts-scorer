@@ -153,6 +153,22 @@ img {
 	z-index:-1px; 
 }
 
+#scorer .controls {
+	padding:10px;
+	margin-bottom: -24px;
+}
+
+#scorer .controls a{
+	padding:10px;
+	font-size:14px;
+	text-align:center;
+	width:152px
+}
+
+.hide {
+	display:none;
+}
+
 .chart svg{
 	margin:9px;
 }

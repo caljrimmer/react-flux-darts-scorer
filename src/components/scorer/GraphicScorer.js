@@ -3,8 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import AppActions from '../../actions/AppActions';
+import BackboneMixin from '../../mixins/BackboneMixin'
+
 
 var GraphicScorer = React.createClass({
+
+    mixins : [BackboneMixin],
 
     previousDart : "",
 
@@ -42,8 +46,11 @@ var GraphicScorer = React.createClass({
     },
 
     render: function() {
+
+        var model = this.props.model;
+
         return (
-            <div id="graphicScorerNew" className="scoringInput clearfix">
+            <div id="graphicScorerNew" className={model.get('score') === 0 ? 'scoringInput clearfix hide' : 'scoringInput clearfix'}>
                 <ul onClick={this.eventDartSelect}>
                     <li id="dart1" className="small white">1</li>
                     <li id="dart2" className="small black">2</li>

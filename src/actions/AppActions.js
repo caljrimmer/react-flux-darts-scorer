@@ -29,6 +29,17 @@ var actions = {
         });
     },
 
+    saveGame: function(value) {
+
+        //API would normally go here;
+        LocalStorage.saveGame(value);
+
+        AppDispatcher.dispatch({
+            actionType: 'save-game',
+            value: 'save-game'
+        });
+    },
+
     deleteGame: function(value) {
 
         //API would normally go here;

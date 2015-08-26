@@ -29,8 +29,8 @@ var Router = Backbone.Router.extend({
     },
 
     initialize: function(){
-        AppActions.getGames(gamesStore);
-        AppActions.getRecord(gamesStore);
+        AppActions.getGames();
+        AppActions.getRecord();
     },
 
     cleanMemory: function(){

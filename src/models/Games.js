@@ -15,6 +15,7 @@ var CurrentGame = Backbone.Model.extend({
         type: 501,
         score : 501,
         list : [],
+        checkoutRoute : '- - -',
         achievements : {
             checkout : 0,
             highest3d : 0,
@@ -46,7 +47,29 @@ var CurrentGame = Backbone.Model.extend({
     },
 
     newGame : function(){
-        this.clear().set(this.defaults);
+        //this.clear();
+        this.set(this.defaults);
+        this.set({
+            gameStart: new Date(),
+            gameEnd: new Date(),
+            list:[],
+            rounds:[{
+                darts : [],
+                total : 0,
+                score : 501
+            }]
+        });
+    },
+
+    EndGameCheck : function(score,curScore,desc){
+        if((score >= curScore) && (score - curScore !== 1)){
+            if(score === curScore){
+                return DartsScorer.doublesValidate(desc);
+            }
+            return true;
+        }else{
+            return false;
+        }
     },
 
     scoreRound : function(list){
@@ -60,24 +83,13 @@ var CurrentGame = Backbone.Model.extend({
             tmp = [],
             parentArray = [];
 
-        var EndGameCheck = function(score,curScore,desc){
-            if((score >= curScore) && (score - curScore !== 1)){
-                if(score === curScore){
-                    return DartsScorer.doublesValidate(desc);
-                }
-                return true;
-            }else{
-                return false;
-            }
-        };
-
         _.each(list,function(v,k){
             var curScore = DartsScorer.scoreParse(v.desc);
             v.index = k;
             score -= curScore;
             obj.total += curScore;
 
-            if(EndGameCheck(obj.score,curScore,v.desc)){
+            if(this.EndGameCheck(obj.score,curScore,v.desc)){
                 obj.score -= curScore;
             }
 
@@ -94,7 +106,8 @@ var CurrentGame = Backbone.Model.extend({
                     darts : []
                 };
             }
-        });
+        }.bind(this));
+
         this.set('rounds',parentArray,{silent:true});
     },
 
@@ -181,7 +194,14 @@ var CurrentGame = Backbone.Model.extend({
     scoreInfo : function(rounds,list){
         var score = rounds[rounds.length-1].score;
         var numberDarts = list.length;
-        var checkoutRoute = DartsScorer.checkoutCalculation(score);
+        var checkoutRoute;
+
+        if(score !== 0){
+            checkoutRoute = DartsScorer.checkoutCalculation(score);
+        }else{
+            checkoutRoute = this.get('checkoutRoute');
+        }
+
         var ave = Math.round(((this.get('type') - score) / numberDarts) * 3 *100)/100;
         this.set({
             score: rounds[rounds.length-1].score,
@@ -192,10 +212,12 @@ var CurrentGame = Backbone.Model.extend({
     },
 
     scoreGame : function(value){
-        this.scoreDart(value);
-        this.scoreRound(this.get('list'));
-        this.scoreAchievements(this.get('achievements'),this.get('rounds'));
-        this.scoreInfo(this.get('rounds'),this.get('list'));
+        if(DartsScorer.scoreValidate(value)) {
+            this.scoreDart(value);
+            this.scoreRound(this.get('list'));
+            this.scoreAchievements(this.get('achievements'), this.get('rounds'));
+            this.scoreInfo(this.get('rounds'), this.get('list'));
+        }
     },
 
     dispatchCallback: function(payload) {
@@ -221,20 +243,16 @@ var Games = Backbone.Collection.extend({
     },
 
     sync: function(method, collection, options) {
-        //API interaction in Actions
         return;
     },
 
     dispatchCallback: function(payload) {
         switch (payload.actionType) {
             case 'get-games':
-                this.fetch();
                 break;
             case 'delete-game':
-                this.sync('remove',this);
                 break;
-            case 'add-game':
-                this.add(payload.value)
+            case 'save-game':
                 break;
         }
     }
