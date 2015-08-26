@@ -25,11 +25,11 @@ var AveragesBox = React.createClass({
                         <li><span className="label">Highest 3 Darts</span><span className="special_record">{model.get('highest3d')}</span></li>
                         <li><span className="label">Highest Checkout</span><span className="special_record">{model.get('bestCheckout')}</span></li>
                         <li>
-                            <span className="label">180's</span><span>{model.get('oneEighty')}</span>
+                            <span className="label">180's</span><span className="special_record">{model.get('oneEighty')}</span>
                             <span className="label">140's</span><span className="special_record">{model.get('oneForty')}</span>
                         </li>
                         <li>
-                            <span className="label">120's</span><span>{model.get('oneTwenty')}</span>
+                            <span className="label">120's</span><span className="special_record">{model.get('oneTwenty')}</span>
                             <span className="label">100's</span><span className="special_record">{model.get('oneHundred')}</span>
                         </li>
                     </ul>

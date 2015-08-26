@@ -4,10 +4,13 @@ import _ from 'underscore';
 
 var actions = {
 
+    refresh : function(){
+        LocalStorage.getGames();
+    },
+
     getGames: function(value){
 
-        //API would normally go here;
-        LocalStorage.getGames();
+        this.refresh();
 
         AppDispatcher.dispatch({
             actionType: 'get-games',

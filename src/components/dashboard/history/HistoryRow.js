@@ -30,7 +30,7 @@ var HistoryRow = React.createClass({
     },
 
     render: function () {
-        var row = this.props.data;
+        var row = this.props.model;
         var achArray = this.countAchievements(row.get('achievements'));
         return (
             <tr>

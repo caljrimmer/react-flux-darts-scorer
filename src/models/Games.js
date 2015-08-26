@@ -246,6 +246,10 @@ var Games = Backbone.Collection.extend({
         return;
     },
 
+    comparator : function(model) {
+        return -new Date(model.get('gameEnd'));
+    },
+
     dispatchCallback: function(payload) {
         switch (payload.actionType) {
             case 'get-games':

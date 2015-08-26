@@ -14,10 +14,12 @@ var HistoryBox = React.createClass({
 
     render: function() {
 
-        var Rows = this.props.collection.map(function(row){
-            return (
-                <HistoryRow key={row.get('id')} data={row} />
-            );
+        var collection = this.props.collection;
+
+        var Rows = this.props.collection.map(function(row,i){
+                return (
+                    <HistoryRow key={row.get('id')} collection={collection} model={row} />
+                );
         });
 
         return (
