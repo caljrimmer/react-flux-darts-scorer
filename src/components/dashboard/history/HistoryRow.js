@@ -26,7 +26,7 @@ var HistoryRow = React.createClass({
 
     eventDeleteRow : function(e) {
         e.preventDefault();
-        AppActions.deleteGame(this.props.data);
+        AppActions.deleteGame(this.props.model);
     },
 
     render: function () {

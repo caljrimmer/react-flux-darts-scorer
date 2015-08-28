@@ -1,6 +1,6 @@
 import _ from 'underscore';
 import gamesStore from '../store/GamesStore';
-import AppActions from '../actions/AppActions';
+import Backbone from '../store/GamesStore';
 
 var actions = {
 
@@ -17,8 +17,7 @@ var actions = {
         });
     },
 
-    parseToLocalStorage : function(){
-        var newArray = gamesStore.toJSON();
+    parseToLocalStorage : function(newArray){
         var delimiter = this.delimiter;
         var str = "";
         _.each(newArray, function(game,i){
@@ -27,7 +26,7 @@ var actions = {
             }
             str += JSON.stringify(game);
         });
-        localStorage.games = str;
+        return str;
     },
 
     getGames : function(){
@@ -41,7 +40,7 @@ var actions = {
     deleteGame : function(value){
         gamesStore.remove(value);
         if(gamesStore.length){
-            this.parseToLocalStorage();
+            localStorage.games = this.parseToLocalStorage(gamesStore.toJSON());
         }else{
             localStorage.games = "";
         }
@@ -51,9 +50,8 @@ var actions = {
     saveGame : function(value){
         gamesStore.add(value)
         if(gamesStore.length){
-            this.parseToLocalStorage();
+            localStorage.games = this.parseToLocalStorage(gamesStore.toJSON());
         }
-        AppActions.newGame();
     }
 
 };
